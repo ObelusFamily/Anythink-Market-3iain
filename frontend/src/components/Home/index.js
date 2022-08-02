@@ -8,6 +8,8 @@ import {
   HOME_PAGE_LOADED,
   HOME_PAGE_UNLOADED,
   APPLY_TAG_FILTER,
+  ENTER_SEARCH_TERM,
+  
 } from "../../constants/actionTypes";
 
 const Promise = global.Promise;
@@ -19,6 +21,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+ onEnterSearchTerm: (term, pager, payload) =>
+    dispatch({ type: ENTER_SEARCH_TERM, term, pager, payload }),
   onClickTag: (tag, pager, payload) =>
     dispatch({ type: APPLY_TAG_FILTER, tag, pager, payload }),
   onLoad: (tab, pager, payload) =>
@@ -45,7 +49,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className="home-page">
-        <Banner />
+        <Banner onEnterSearchTerm={this.props.onEnterSearchTerm} />
 
         <div className="container page">
           <Tags tags={this.props.tags} onClickTag={this.props.onClickTag} />
