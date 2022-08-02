@@ -58,7 +58,6 @@ const Items = {
       return requests.get(`/items?${limit(1000, page)}&title=${encode(title)}`);
     }
   },
-  
   bySeller: (seller, page) =>
     requests.get(`/items?seller=${encode(seller)}&${limit(500, page)}`),
   byTag: (tag, page) =>
