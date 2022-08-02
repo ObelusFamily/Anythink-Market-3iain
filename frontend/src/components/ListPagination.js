@@ -21,7 +21,7 @@ const ListPagination = (props) => {
     if (props.pager) {
       props.onSetPage(page, props.pager(page));
     } else {
-      props.onSetPage(page, agent.Items.all((undefined, page));
+      props.onSetPage(page, agent.Items.all(undefined, page));
     }
   };
 
