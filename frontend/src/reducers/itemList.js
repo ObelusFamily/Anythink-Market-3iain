@@ -47,7 +47,7 @@ const reducer = (state = {}, action) => {
         tag: action.tag,
         currentPage: 0,
       };
-      case ENTER_SEARCH_TERM:
+    case ENTER_SEARCH_TERM:
       return {
         ...state,
         pager: action.pager,
