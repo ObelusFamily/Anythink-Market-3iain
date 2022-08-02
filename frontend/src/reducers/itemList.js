@@ -14,36 +14,7 @@ import {
 } from "../constants/actionTypes";
 
 const reducer = (state = {}, action) => {
-  switch (action.type) {
-    case ITEM_FAVORITED:
-    case ITEM_UNFAVORITED:
-      return {
-        ...state,
-        items: state.items.map((item) => {
-          if (item.slug === action.payload.item.slug) {
-            return {
-              ...item,
-              favorited: action.payload.item.favorited,
-              favoritesCount: action.payload.item.favoritesCount,
-            };
-          }
-          return item;
-        }),
-      };
-    case SET_PAGE:
-      return {
-        ...state,
-        items: action.payload.items,
-        itemsCount: action.payload.itemsCount,
-        currentPage: action.page,
-      };
-    case APPLY_TAG_FILTER:
-      return {
-        ...state,
-        pager: action.pager,
-        items: action.payload.items,
-        itemsCount: action.payload.itemsCount,
-        tab: null,
+@@ -46,6 +47,16 @@ const reducer = (state = {}, action) => {
         tag: action.tag,
         currentPage: 0,
       };
@@ -80,20 +51,3 @@ const reducer = (state = {}, action) => {
         tag: null,
       };
     case PROFILE_PAGE_LOADED:
-    case PROFILE_FAVORITES_PAGE_LOADED:
-      return {
-        ...state,
-        pager: action.pager,
-        items: action.payload[1].items,
-        itemsCount: action.payload[1].itemsCount,
-        currentPage: 0,
-      };
-    case PROFILE_PAGE_UNLOADED:
-    case PROFILE_FAVORITES_PAGE_UNLOADED:
-      return {};
-    default:
-      return state;
-  }
-};
-
-export default reducer;
