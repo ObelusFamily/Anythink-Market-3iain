@@ -34,7 +34,7 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         titleSearchTerm: action.payload.titleSearchTerm,
-      };      
+      };
     case SET_PAGE:
       return {
         ...state,
