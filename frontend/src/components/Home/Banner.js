@@ -5,13 +5,13 @@ import { connect } from "react-redux";
 import { UPDATE_TITLE_SEARCH_TERM } from "../../constants/actionTypes";
 
 const Banner = (props) => {
-
-    const [isSearchHidden, setIsSearchHidden] = React.useState(true);
+  const [isSearchHidden, setIsSearchHidden] = React.useState(true);
 
   const onClickHandler = (event) => {
     event.preventDefault();
     setIsSearchHidden(!isSearchHidden);
   };
+
   const onChangeHandler = (event) => {
     event.preventDefault();
     const { value } = event.target;
@@ -26,16 +26,14 @@ const Banner = (props) => {
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div className="d-flex flex-row justify-content-center align-items-baseline">
-           <span
+          <span
             id="get-part"
             style={{ cursor: "pointer" }}
             onClick={onClickHandler}
           >
-          
             A place to get
           </span>
-          
-           {isSearchHidden ? (
+          {isSearchHidden ? (
             <span>&nbsp;</span>
           ) : (
             <form className="col-7">
@@ -56,4 +54,5 @@ const Banner = (props) => {
     </div>
   );
 };
+
 export default connect()(Banner);
