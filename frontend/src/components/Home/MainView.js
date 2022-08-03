@@ -3,14 +3,12 @@ import React from "react";
 import agent from "../../agent";
 import { connect } from "react-redux";
 import { CHANGE_TAB } from "../../constants/actionTypes";
-
 const YourFeedTab = (props) => {
   if (props.token) {
     const clickHandler = (ev) => {
       ev.preventDefault();
       props.onTabClick("feed", agent.Items.feed, agent.Items.feed());
     };
-
     return (
       <li className="nav-item">
         <button
@@ -25,7 +23,6 @@ const YourFeedTab = (props) => {
   }
   return null;
 };
-
 const GlobalFeedTab = (props) => {
   const clickHandler = (ev) => {
     ev.preventDefault();
@@ -43,12 +40,10 @@ const GlobalFeedTab = (props) => {
     </li>
   );
 };
-
 const TagFilterTab = (props) => {
   if (!props.tag) {
     return null;
   }
-
   return (
     <li className="nav-item">
       <button type="button" className="nav-link active">
@@ -57,18 +52,15 @@ const TagFilterTab = (props) => {
     </li>
   );
 };
-
 const mapStateToProps = (state) => ({
   ...state.itemList,
   tags: state.home.tags,
   token: state.common.token,
 });
-
 const mapDispatchToProps = (dispatch) => ({
   onTabClick: (tab, pager, payload) =>
     dispatch({ type: CHANGE_TAB, tab, pager, payload }),
 });
-
 const MainView = (props) => {
   return (
     <div>
@@ -79,22 +71,19 @@ const MainView = (props) => {
             tab={props.tab}
             onTabClick={props.onTabClick}
           />
-
           <GlobalFeedTab tab={props.tab} onTabClick={props.onTabClick} />
-
           <TagFilterTab tag={props.tag} />
         </ul>
       </div>
-
       <ItemList
         pager={props.pager}
         items={props.items}
         loading={props.loading}
         itemsCount={props.itemsCount}
         currentPage={props.currentPage}
+        titleSearchTerm={props.titleSearchTerm}
       />
     </div>
   );
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(MainView);
